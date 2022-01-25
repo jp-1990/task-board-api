@@ -1,0 +1,9 @@
+{
+  "name": "task-board-api",
+  "version": "1.0.0",
+  "description": "api for task-board frontend",
+  "main": "index.js",
+  "repository": "https://github.com/jp-1990/task-board-api.git",
+  "author": "James Plummer <plum_1990@hotmail.co.uk>",
+  "license": "MIT"
+}
