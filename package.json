@@ -2,13 +2,14 @@
   "name": "task-board-api",
   "version": "1.0.0",
   "description": "api for task-board frontend",
-  "main": "index.js",
+  "main": "server.js",
   "repository": "https://github.com/jp-1990/task-board-api.git",
   "author": "James Plummer <plum_1990@hotmail.co.uk>",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon index.ts",
-    "build": "tsc && node dist/index.js"
+    "dev": "nodemon server.ts",
+    "build": "tsc && node dist/server.js",
+    "start": "node dist/server.js"
   },
   "dependencies": {
     "cors": "^2.8.5",

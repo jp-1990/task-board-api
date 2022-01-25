@@ -15,7 +15,7 @@ import {
 
 import { pgClient } from "./src/pg-client";
 
-const port = 3000;
+const port = process.env.PORT || 3000;
 const app = express();
 
 app.use(helmet());
