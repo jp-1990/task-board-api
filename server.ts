@@ -13,6 +13,7 @@ import {
   getAllTasksQuery,
   overdueOneTaskQuery,
   updateOneTaskQuery,
+  updateTaskIndexQuery,
 } from "./src/queries";
 
 import { pgClient } from "./src/pg-client";
@@ -80,6 +81,16 @@ app.post("/v1/create-one-task/", async (req, res, next) => {
 app.patch("/v1/update-one-task/", async (req, res, next) => {
   try {
     const queryRes = await pgClient.query(updateOneTaskQuery(req.body));
+    res.send(JSON.stringify(queryRes.rows));
+  } catch (err) {
+    next(err);
+  }
+});
+
+// update-task-index - should update task index by id and return updated task (for maintaining the order of items in a list)
+app.patch("/v1/update-task-index/", async (req, res, next) => {
+  try {
+    const queryRes = await pgClient.query(updateTaskIndexQuery(req.body));
     res.send(JSON.stringify(queryRes.rows));
   } catch (err) {
     next(err);

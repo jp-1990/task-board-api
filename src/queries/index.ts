@@ -8,3 +8,4 @@ export { deleteOneTaskQuery } from "./delete-one-task";
 export { getAllTasksQuery } from "./get-all-tasks";
 export { overdueOneTaskQuery } from "./overdue-one-task";
 export { updateOneTaskQuery } from "./update-one-task";
+export { updateTaskIndexQuery } from "./update-task-index";
