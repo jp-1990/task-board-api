@@ -10,7 +10,9 @@ import {
   completeOneTaskQuery,
   createOneTaskQuery,
   deleteOneTaskQuery,
+  getAllTasksQuery,
   overdueOneTaskQuery,
+  updateOneTaskQuery,
 } from "./src/queries";
 
 import { pgClient } from "./src/pg-client";
@@ -30,11 +32,15 @@ pgClient.connect((err) => {
 });
 
 // ENDPOINTS
-// get-all-lists - should return all lists with all tasks in each list
-app.get("/v1/get-all-lists/", async (req, res, next) => {
+// get-all-lists - should return all lists with all tasks
+app.get("/v1/get-all-items/", async (req, res, next) => {
   try {
-    const queryRes = await pgClient.query(getAllListsQuery());
-    res.send(JSON.stringify(queryRes.rows));
+    const listsQueryRes = await pgClient.query(getAllListsQuery());
+    const tasksQueryRes = await pgClient.query(getAllTasksQuery());
+
+    res.send(
+      JSON.stringify({ lists: listsQueryRes.rows, tasks: tasksQueryRes.rows })
+    );
   } catch (err) {
     next(err);
   }
@@ -59,9 +65,8 @@ app.post("/v1/delete-one-list/", async (req, res, next) => {
     next(err);
   }
 });
-// update-one-list - should update list by id with tasks
 
-// create-one-task - should create and return task with id, name, description, dealine and completed properties with list id as foreign key
+// create-one-task - should create and return task with id, list_id, name, description, dealine and completed properties with list_id as foreign key
 app.post("/v1/create-one-task/", async (req, res, next) => {
   try {
     const queryRes = await pgClient.query(createOneTaskQuery(req.body));
@@ -72,6 +77,14 @@ app.post("/v1/create-one-task/", async (req, res, next) => {
 });
 
 // update-one-task - should update task by id and allow update of all properties other than id and return updated task
+app.patch("/v1/update-one-task/", async (req, res, next) => {
+  try {
+    const queryRes = await pgClient.query(updateOneTaskQuery(req.body));
+    res.send(JSON.stringify(queryRes.rows));
+  } catch (err) {
+    next(err);
+  }
+});
 
 // delete-one-task - should delete task by id and return id
 app.post("/v1/delete-one-task/", async (req, res, next) => {
@@ -104,5 +117,5 @@ app.patch("/v1/overdue-one-task/", async (req, res, next) => {
 });
 
 app.listen(port, () => {
-  return console.log(`Express is listening at http://localhost:${port}`);
+  return console.log(`Express is listening at: ${port}`);
 });

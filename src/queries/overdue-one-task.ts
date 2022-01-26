@@ -1,3 +1,3 @@
 export const overdueOneTaskQuery = ({ id }) => `
-UPDATE tasks SET overdue= true WHERE id= '${id}' RETURNING id, name, description, deadline, completed, overdue, type
+UPDATE tasks SET overdue= true WHERE task_id= '${id}' RETURNING task_id, list_id, name, description, deadline, completed, overdue, type
 `;

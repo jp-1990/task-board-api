@@ -1,3 +1,8 @@
-export const createOneTaskQuery = ({ name, description, deadline }) => `
-INSERT INTO tasks (name,description,deadline) VALUES ('${name}','${description}','${deadline}') RETURNING id, name, description, deadline, completed, overdue, type
+export const createOneTaskQuery = ({
+  name,
+  description,
+  deadline,
+  list_id,
+}) => `
+INSERT INTO tasks (name,description,deadline,list_id) VALUES ('${name}','${description}','${deadline}','${list_id}') RETURNING task_id, list_id, name, description, deadline, completed, overdue, type
 `;

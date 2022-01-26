@@ -1,3 +1,3 @@
 export const createOneListQuery = ({ name }) => `
-INSERT INTO lists (name) VALUES ('${name}') RETURNING id, name, tasks, type
+INSERT INTO lists (name) VALUES ('${name}') RETURNING list_id, name, type
 `;
