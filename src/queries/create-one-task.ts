@@ -5,5 +5,5 @@ export const createOneTaskQuery = ({
   index,
   list_id,
 }) => `
-INSERT INTO tasks (name,description,deadline,list_id,index) VALUES ('${name}','${description}','${deadline}','${list_id}','${index}) RETURNING task_id, list_id,index, name, description, deadline, completed, overdue, type
+INSERT INTO tasks (name,description,deadline,list_id,index) VALUES ('${name}','${description}','${deadline}','${list_id}','${index}') RETURNING task_id, list_id, index, name, description, deadline, completed, overdue, type
 `;
