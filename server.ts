@@ -32,6 +32,22 @@ pgClient.connect((err) => {
   }
 });
 
+setInterval(async () => {
+  try {
+    const tasksQueryRes = await pgClient.query(getAllTasksQuery());
+    const now = new Date(Date.now()).valueOf();
+    for (const row of tasksQueryRes.rows) {
+      const deadline = new Date(row.deadline).valueOf();
+      if (deadline < now && !row.overdue) {
+        await pgClient.query(overdueOneTaskQuery({ id: row.task_id }));
+        console.log(row.task_id, "overdue");
+      }
+    }
+  } catch (err) {
+    console.error(err);
+  }
+}, 1000 * 60 * 60);
+
 // ENDPOINTS
 // get-all-lists - should return all lists with all tasks
 app.get("/v1/get-all-items/", async (req, res, next) => {
