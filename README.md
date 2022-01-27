@@ -8,7 +8,7 @@ The endpoints exposed by this API allow the caller to interact with a PostgreSQL
 
 An interval runs on this server to check, and update, the 'overdue' property of a task once the deadline has passed.
 
-NOTE: API may take time to start if it has been in an idle state for some time.
+NOTE: API may take time to start if it has been in an idle state for some time. This can take up to a couple of minutes.
 
 ## Data Structure
 

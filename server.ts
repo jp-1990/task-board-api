@@ -16,7 +16,7 @@ import {
   updateTaskIndexQuery,
 } from "./src/queries";
 
-import { pgClient } from "./src/pg-client";
+import { pgClient } from "./src/database-client";
 
 const port = process.env.PORT || 3000;
 const app = express();
