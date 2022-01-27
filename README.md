@@ -36,7 +36,7 @@ task {
 
 Where they require arguments, all endpoint expect a body in JSON format.
 
-### /v1/get-all-items/
+### get /v1/get-all-items/
 
 Intended to run on client load to prepare data to display to the user.
 
@@ -45,7 +45,7 @@ Body: { }
 Expects no arguments, returns { tasks: [ ] , lists: [ ] }
 ```
 
-### /v1/create-one-list/
+### post /v1/create-one-list/
 
 Create a list.
 
@@ -54,7 +54,7 @@ Body: { name: string }
 returns Array<list>
 ```
 
-### /v1/delete-one-list/
+### post /v1/delete-one-list/
 
 Delete a list.
 
@@ -63,7 +63,7 @@ Body: { id: list_id }
 returns list_id of deleted list
 ```
 
-### /v1/create-one-task/
+### post /v1/create-one-task/
 
 Create a new task.
 
@@ -78,7 +78,7 @@ Body: {
 returns Array<task>
 ```
 
-### /v1/update-one-task/
+### patch /v1/update-one-task/
 
 Basic update of task details.
 
@@ -93,7 +93,7 @@ Body: {
 returns Array<task>
 ```
 
-### /v1/update-task-index/
+### patch /v1/update-task-index/
 
 Intended as a way to move tasks between lists, and adjust the order within a list.
 
@@ -106,7 +106,7 @@ Body: {
 returns Array<task>
 ```
 
-### /v1/delete-one-task/
+### post /v1/delete-one-task/
 
 Delete a task.
 
@@ -117,7 +117,7 @@ Body: {
 returns task_id of deleted task
 ```
 
-### /v1/complete-one-task/
+### patch /v1/complete-one-task/
 
 Toggle the 'completed' field of a task.
 
@@ -129,7 +129,7 @@ Body: {
 returns Array<task>
 ```
 
-### /v1/overdue-one-task/
+### patch /v1/overdue-one-task/
 
 Mark a task as overdue.
 
